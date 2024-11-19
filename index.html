@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kod Oluşturucu</title>
+    <!-- CSS dosyasını buraya bağlıyoruz -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.0/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.23.0/docxtemplater.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>QR Kod Oluşturucu</h1>
+        <input type="text" id="linkInput" placeholder="Linki buraya girin" value="Lütfen QR Oluşturulacak Adresi Yazınız" />
+        <button id="generateBtn">QR Oluştur</button>
+        <button id="clearBtn">Temizle</button>
+        
+        <div id="errorMessage" style="color: red; font-size: 14px; margin-top: 10px;"></div>
+
+        <div id="qrcode" style="margin-top: 20px;"></div>
+        
+        <div id="saveBtns" style="display:none; margin-top: 20px;">
+            <button id="savePdfBtn">PDF Olarak Kaydet</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by <strong>Sercan</strong></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
