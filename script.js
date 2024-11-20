@@ -1,3 +1,4 @@
+// QR Kod oluşturma işlemi
 document.getElementById('generateBtn').addEventListener('click', function () {
     const linkInput = document.getElementById('linkInput').value;
     const qrCodeContainer = document.getElementById('qrcode');
@@ -32,6 +33,7 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     saveBtns.style.display = "block";
 });
 
+// QR Kod ve input temizleme işlemi
 document.getElementById('clearBtn').addEventListener('click', function () {
     document.getElementById('linkInput').value = "";  // URL inputunu temizle
     document.getElementById('qrcode').innerHTML = "";  // QR kodu temizle
@@ -51,5 +53,22 @@ document.getElementById('savePdfBtn').addEventListener('click', function () {
         doc.save('qr-code.pdf');
     } else {
         alert("QR Kod oluşturulmadı, önce oluşturmanız gerekiyor.");
+    }
+});
+
+// Varsayılan metin temizleme ve geri yükleme işlemleri
+const defaultText = "Lütfen QR Kod Oluşturulacak Adresi Giriniz"; // Varsayılan metin
+
+document.getElementById('linkInput').addEventListener('focus', function () {
+    const input = document.getElementById('linkInput');
+    if (input.value === defaultText) {
+        input.value = ""; // Varsayılan metni temizle
+    }
+});
+
+document.getElementById('linkInput').addEventListener('blur', function () {
+    const input = document.getElementById('linkInput');
+    if (input.value.trim() === "") {
+        input.value = defaultText; // Boş bırakıldıysa varsayılan metni geri getir
     }
 });
