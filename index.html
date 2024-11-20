@@ -1,74 +1,55 @@
-// QR Kod oluşturma işlemi
-document.getElementById('generateBtn').addEventListener('click', function () {
-    const linkInput = document.getElementById('linkInput').value;
-    const qrCodeContainer = document.getElementById('qrcode');
-    const errorMessage = document.getElementById('errorMessage');
-    const saveBtns = document.getElementById('saveBtns');
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kod Oluşturucu</title>
+    <!-- CSS dosyasını buraya bağlıyoruz -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
 
-    // Önceki QR kodunu temizle
-    qrCodeContainer.innerHTML = "";
-    errorMessage.innerHTML = ""; // Hata mesajını temizle
+    <div class="container">
+        <h1>QR Kod Oluşturucu</h1>
+        <input 
+            type="text" 
+            id="linkInput" 
+            placeholder="Lütfen QR Oluşturulacak Adresi Yazınız" 
+        />
+        <button id="generateBtn">QR Oluştur</button>
+        <button id="clearBtn">Temizle</button>
+        
+        <div id="errorMessage" style="color: red; font-size: 14px; margin-top: 10px;"></div>
 
-    if (linkInput.trim() === "") {
-        alert("Lütfen bir link girin!");
-        return;
-    }
+        <div id="qrcode" style="margin-top: 20px;"></div>
+        
+        <div id="saveBtns" style="display:none; margin-top: 20px;">
+            <button id="savePdfBtn">PDF Olarak Kaydet</button>
+        </div>
+    </div>
 
-    // Linkin geçerli olup olmadığını kontrol et
-    const urlPattern = /^(https?:\/\/)?([a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(\:[0-9]{1,5})?(\/.*)?)$/i;
-    if (!urlPattern.test(linkInput)) {
-        errorMessage.innerHTML = "Geçersiz URL! Lütfen geçerli bir link girin.";
-        return;
-    }
+    <footer style="text-align: center; margin-top: 20px; font-size: 12px;">
+        <p>Powered by <strong>Sercan</strong></p>
+    </footer>
 
-    // QR Kod API URL'si
-    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(linkInput)}&size=200x200`;
+    <script>
+        // Varsayılan metni temizleme ve geri yükleme
+        const input = document.getElementById("linkInput");
 
-    // API'den gelen QR kodu görselini yerleştir
-    const img = document.createElement('img');
-    img.src = qrApiUrl;
-    qrCodeContainer.appendChild(img);
+        input.addEventListener("focus", () => {
+            if (input.placeholder === "Lütfen QR Oluşturulacak Adresi Yazınız") {
+                input.placeholder = ""; // Placeholder'ı temizle
+            }
+        });
 
-    // Kaydet butonlarını göster
-    saveBtns.style.display = "block";
-});
-
-// QR Kod ve input temizleme işlemi
-document.getElementById('clearBtn').addEventListener('click', function () {
-    document.getElementById('linkInput').value = "";  // URL inputunu temizle
-    document.getElementById('qrcode').innerHTML = "";  // QR kodu temizle
-    document.getElementById('errorMessage').innerHTML = "";  // Hata mesajını temizle
-    document.getElementById('saveBtns').style.display = "none"; // Kaydet butonlarını gizle
-});
-
-// PDF kaydetme işlemi
-document.getElementById('savePdfBtn').addEventListener('click', function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const qrCodeImage = document.getElementById('qrcode').getElementsByTagName('img')[0];
-
-    if (qrCodeImage) {
-        doc.text("QR Kod", 10, 10);
-        doc.addImage(qrCodeImage.src, 'JPEG', 10, 20, 180, 180);
-        doc.save('qr-code.pdf');
-    } else {
-        alert("QR Kod oluşturulmadı, önce oluşturmanız gerekiyor.");
-    }
-});
-
-// Varsayılan metin temizleme ve geri yükleme işlemleri
-const defaultText = "Lütfen QR Kod Oluşturulacak Adresi Giriniz"; // Varsayılan metin
-
-document.getElementById('linkInput').addEventListener('focus', function () {
-    const input = document.getElementById('linkInput');
-    if (input.value === defaultText) {
-        input.value = ""; // Varsayılan metni temizle
-    }
-});
-
-document.getElementById('linkInput').addEventListener('blur', function () {
-    const input = document.getElementById('linkInput');
-    if (input.value.trim() === "") {
-        input.value = defaultText; // Boş bırakıldıysa varsayılan metni geri getir
-    }
-});
+        input.addEventListener("blur", () => {
+            if (input.value.trim() === "") {
+                input.placeholder = "Lütfen QR Oluşturulacak Adresi Yazınız"; // Placeholder geri yükle
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
