@@ -23,27 +23,30 @@
 <body>
 
     <div class="container">
-        <h1>QR Kod Oluşturucu</h1>
+        <h1>🔲 QR Kod Oluşturucu</h1>
 
-        <input type="text" id="linkInput" placeholder="Lütfen QR Oluşturulacak Adresi Yazınız" />
-        <button id="generateBtn">QR Oluştur</button>
-        <button id="clearBtn">Temizle</button>
+        <input type="text" id="linkInput" placeholder="https://ornek.com" />
+        
+        <div class="button-group">
+            <button id="generateBtn">QR Oluştur</button>
+            <button id="clearBtn" class="secondary">Temizle</button>
+        </div>
 
-        <div id="errorMessage" style="color: red; font-size: 14px; margin-top: 10px;"></div>
+        <div id="errorMessage"></div>
 
-        <div id="qrcode" style="margin-top: 20px;"></div>
+        <div id="qrcode"></div>
 
-        <div id="saveBtns" style="display:none; margin-top: 20px;">
-            <button id="savePdfBtn">PDF Olarak Kaydet</button>
+        <div id="saveBtns">
+            <button id="savePdfBtn">📄 PDF Olarak Kaydet</button>
         </div>
     </div>
 
-    <footer style="text-align: center; margin-top: 20px; font-size: 12px;">
-        <p>Powered by <strong>Sercan</strong></p>
+    <footer>
+        <p>Developed with ❤️ by <strong>Sercan</strong></p>
     </footer>
 
-    <!-- Placeholder düzeltme -->
     <script>
+        // Placeholder kontrolü
         const input = document.getElementById("linkInput");
         input.addEventListener("focus", () => {
             if (input.placeholder === "Lütfen QR Oluşturulacak Adresi Yazınız") {
@@ -52,13 +55,11 @@
         });
         input.addEventListener("blur", () => {
             if (input.value.trim() === "") {
-                input.placeholder = "Lütfen QR Oluşturulacak Adresi Yazınız";
+                input.placeholder = "https://ornek.com";
             }
         });
     </script>
 
-    <!-- QR Kod ve PDF işlemleri -->
     <script src="script.js"></script>
-
 </body>
 </html>
