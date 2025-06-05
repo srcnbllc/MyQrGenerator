@@ -4,40 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Kod Oluşturucu</title>
-    <!-- CSS dosyasını buraya bağlıyoruz -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Gerekli Kütüphaneler -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5877368480554397"
-     crossorigin="anonymous"></script>
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NDBYVLTQ8X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  gtag('config', 'G-NDBYVLTQ8X');
-</script>
-</head>
-    
+    <!-- Google Analytics (İsteğe Bağlı) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDBYVLTQ8X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NDBYVLTQ8X');
+    </script>
 </head>
 <body>
 
     <div class="container">
         <h1>QR Kod Oluşturucu</h1>
-        <input 
-            type="text" 
-            id="linkInput" 
-            placeholder="Lütfen QR Oluşturulacak Adresi Yazınız" 
-        />
+
+        <input type="text" id="linkInput" placeholder="Lütfen QR Oluşturulacak Adresi Yazınız" />
         <button id="generateBtn">QR Oluştur</button>
         <button id="clearBtn">Temizle</button>
-        
+
         <div id="errorMessage" style="color: red; font-size: 14px; margin-top: 10px;"></div>
 
         <div id="qrcode" style="margin-top: 20px;"></div>
-        
+
         <div id="saveBtns" style="display:none; margin-top: 20px;">
             <button id="savePdfBtn">PDF Olarak Kaydet</button>
         </div>
@@ -47,22 +42,23 @@
         <p>Powered by <strong>Sercan</strong></p>
     </footer>
 
+    <!-- Placeholder düzeltme -->
     <script>
-        // Varsayılan metni temizleme ve geri yükleme
         const input = document.getElementById("linkInput");
-
         input.addEventListener("focus", () => {
             if (input.placeholder === "Lütfen QR Oluşturulacak Adresi Yazınız") {
-                input.placeholder = ""; // Placeholder'ı temizle
+                input.placeholder = "";
             }
         });
-
         input.addEventListener("blur", () => {
             if (input.value.trim() === "") {
-                input.placeholder = "Lütfen QR Oluşturulacak Adresi Yazınız"; // Placeholder geri yükle
+                input.placeholder = "Lütfen QR Oluşturulacak Adresi Yazınız";
             }
         });
     </script>
+
+    <!-- QR Kod ve PDF işlemleri -->
     <script src="script.js"></script>
+
 </body>
 </html>
