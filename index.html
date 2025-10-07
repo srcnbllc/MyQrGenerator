@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Kod Oluşturucu</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Kod Oluşturucu</title>
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- Gerekli Kütüphaneler -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Kütüphaneler -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <!-- Google Analytics (İsteğe Bağlı) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDBYVLTQ8X"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NDBYVLTQ8X');
-    </script>
+  <!-- Google Analytics (isteğe bağlı) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NDBYVLTQ8X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NDBYVLTQ8X');
+  </script>
 </head>
+
 <body>
+  <div class="container">
+    <h1>🔲 QR Kod Oluşturucu</h1>
 
-    <div class="container">
-        <h1>🔲 QR Kod Oluşturucu</h1>
+    <input 
+      type="text" 
+      id="linkInput" 
+      placeholder="https://ornek.com" 
+      aria-label="QR kodu oluşturmak için bağlantı girin"
+    />
 
-        <input type="text" id="linkInput" placeholder="https://ornek.com" />
-        
-        <div class="button-group">
-            <button id="generateBtn">QR Oluştur</button>
-            <button id="clearBtn" class="secondary">Temizle</button>
-        </div>
-
-        <div id="errorMessage"></div>
-
-        <div id="qrcode"></div>
-
-        <div id="saveBtns">
-            <button id="savePdfBtn">📄 PDF Olarak Kaydet</button>
-        </div>
+    <div class="button-group">
+      <button id="generateBtn">🎯 QR Oluştur</button>
+      <button id="clearBtn" class="secondary">🧹 Temizle</button>
     </div>
 
-    <footer>
-        <p>Developed with ❤️ by <strong>Sercan</strong></p>
-    </footer>
+    <div id="errorMessage"></div>
 
-    <script>
-        // Placeholder kontrolü
-        const input = document.getElementById("linkInput");
-        input.addEventListener("focus", () => {
-            if (input.placeholder === "Lütfen QR Oluşturulacak Adresi Yazınız") {
-                input.placeholder = "";
-            }
-        });
-        input.addEventListener("blur", () => {
-            if (input.value.trim() === "") {
-                input.placeholder = "https://ornek.com";
-            }
-        });
-    </script>
+    <div id="qrcode"></div>
 
-    <script src="script.js"></script>
+    <div id="saveBtns">
+      <button id="savePdfBtn">📄 PDF Olarak Kaydet</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Developed with by <strong>Sercan</strong></p>
+  </footer>
+
+  <script>
+    // Placeholder davranışı
+    const input = document.getElementById("linkInput");
+    input.addEventListener("focus", () => {
+      if (input.placeholder === "https://ornek.com") {
+        input.placeholder = "";
+      }
+    });
+    input.addEventListener("blur", () => {
+      if (input.value.trim() === "") {
+        input.placeholder = "https://ornek.com";
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
